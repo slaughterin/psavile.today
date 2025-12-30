@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vile.today</title>
+
+<style>
+/* ================= RESET ================= */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#000;
+  color:#e8e8e8;
+  font-family:"Inter","Courier New",monospace;
+  overflow-x:hidden;
+  perspective: 1000px;
+}
+
+/* ================= RAIN ================= */
+.rain {position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;}
+.drop {position:absolute; width:1px; border-radius:50%; background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.25), rgba(255,255,255,0)); animation:fall linear infinite;}
+@keyframes fall { from{transform:translateY(-30px);} to{transform:translateY(120vh);} }
+
+/* ================= LOADING SCREEN ================= */
+#loader {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.98);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:9999;
+  backdrop-filter:blur(12px);
+}
+.loader-ring {
+  position:relative; width:220px; height:220px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.85);
+  display:flex; align-items:center; justify-content:center;
+  animation:loaderPulse 3s ease-in-out infinite;
+  box-shadow:0 0 30px rgba(255,255,255,.15);
+}
+.loader-ring img { width:130px; }
+.loader-text {
+  margin-top:30px; font-size:1.3rem; letter-spacing:3px;
+  opacity:.95;
+  animation:textFade 3s infinite ease-in-out;
+  text-shadow:0 0 10px rgba(255,255,255,.3);
+}
+.loader-subtext {
+  margin-top:12px; font-size:.85rem; color:#bbb; opacity:.75; text-align:center;
+  animation:fadeIn 2s ease forwards;
+}
+.loader-legal {
+  margin-top:50px; max-width:650px; text-align:center;
+  font-size:.74rem; line-height:1.9; color:#b8b8b8;
+}
+@keyframes loaderPulse { 0%{transform:scale(1);opacity:.7} 50%{transform:scale(1.065);opacity:1} 100%{transform:scale(1);opacity:.7} }
+@keyframes textFade { 50%{opacity:1} }
+@keyframes fadeIn { 0%{opacity:0} 100%{opacity:0.75} }
+
+/* ================= MAIN ================= */
+#content {opacity:0; transition:opacity 1.8s ease; min-height:100vh; padding:90px 20px 100px; position:relative; z-index:1;}
+.top-gif {text-align:center; margin-bottom:75px;}
+.top-gif img {max-width:150px; transform-origin:top center; animation:swing 8s ease-in-out infinite;}
+@keyframes swing{ 0%{transform:rotate(-1.5deg);}50%{transform:rotate(1.5deg);}100%{transform:rotate(-1.5deg);} }
+
+/* ================= CENTER ================= */
+.center{ max-width:880px; margin:0 auto; text-align:center; }
+h1{ font-size:2.8rem; letter-spacing:8px; margin-bottom:42px; animation:fadeIn 2s ease forwards;}
+.bio{ max-width:760px; margin:0 auto 70px; font-size:1.05rem; line-height:2.1; color:#d2d2d2; animation:fadeIn 2.5s ease forwards; }
+
+/* ================= BUTTONS ================= */
+.links{ display:flex; justify-content:center; gap:30px; flex-wrap:wrap; animation:fadeIn 3s ease forwards;}
+.links a {
+  position:relative; padding:17px 42px; border-radius:14px;
+  text-decoration:none; color:#fff; font-weight:600; letter-spacing:1.4px;
+  background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.32); backdrop-filter:blur(12px);
+  transition:all .45s cubic-bezier(.22,.61,.36,1);
+}
+.links a::before {
+  content:""; position:absolute; inset:0; border-radius:14px;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.22),transparent); opacity:0; transition:.45s;
+}
+.links a:hover { transform:translateY(-6px); border-color:#fff; box-shadow:0 10px 40px rgba(255,255,255,.18), inset 0 0 0 1px rgba(255,255,255,.1); }
+.links a:hover::before { opacity:1 }
+
+/* ================= LEGAL ================= */
+.legal { margin-top:120px; border-top:1px solid rgba(255,255,255,.25); padding-top:36px;
+  max-width:780px; margin-left:auto; margin-right:auto; font-size:.78rem; line-height:2.1; color:#b0b0b0; text-align:left; animation:fadeIn 3.2s ease forwards;}
+.legal strong{ color:#e6e6e6; }
+</style>
+</head>
+<body>
+
+<script>
+if(window.top!==window.self || /discord|telegram|embed|bot|crawler/i.test(navigator.userAgent)){
+  document.documentElement.innerHTML=`
+  <style>body{background:black;color:white;display:flex;align-items:center;justify-content:center;height:100vh;font-family:Courier New}</style>
+  <h1>STOP SKIDDING</h1>`;
+}
+</script>
+
+<div class="rain"></div>
+
+<!-- LOADING -->
+<div id="loader">
+  <div class="loader-ring">
+    <img src="fbii.png" alt="loading">
+  </div>
+  <div class="loader-text">Loading...</div>
+  <div class="loader-subtext">Preparing the site environment, please wait…</div>
+  <div class="loader-legal">
+    <strong>© 2025 River. All rights reserved.</strong><br>
+    This site and its contents are fully protected under United States law.
+    Unauthorized copying, redistribution, scraping, or misuse is strictly prohibited.
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="content">
+  <div class="top-gif">
+    <img src="baby.png" alt="visual">
+  </div>
+  <div class="center">
+    <h1>vile.today</h1>
+    <div class="bio">
+      Due to account suspension and restrictions on my devices and IP address,
+      I am no longer active on Discord.<br><br>
+      Any individual claiming to be <strong>River</strong> is impersonating me.
+      For legitimate communication, please use the contact options below.
+    </div>
+    <div class="links">
+      <a href="https://web.telegram.org/k/#@isocracy">Telegram</a>
+      <a href="https://www.instagram.com/cried140/">Instagram</a>
+    </div>
+    <div class="legal">
+      <strong>Legal Notice</strong><br>
+      © 2025 River. All rights reserved.<br><br>
+      This website, including design, source code, text, graphics, and scripts,
+      is protected under U.S. law and international regulations.<br>
+      Any unauthorized reproduction, duplication, reverse engineering, scraping,
+      or misuse may result in civil and/or criminal liability.
+    </div>
+  </div>
+</div>
+
+<script>
+setTimeout(()=>{
+  document.getElementById('loader').style.display="none";
+  document.getElementById('content').style.opacity="1";
+},3000);
+
+/* RAIN */
+const rain=document.querySelector(".rain");
+for(let i=0;i<450;i++){
+  const d=document.createElement("div");
+  const depth=Math.random();
+  d.className="drop";
+  d.style.left=Math.random()*100+"vw";
+  d.style.height=12+depth*30+"px";
+  d.style.opacity=.08+depth*.4;
+  d.style.animationDuration=1+depth*3+"s";
+  rain.appendChild(d);
+}
+
+/* ANTI-SKID */
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("keydown",e=>{
+  if(e.key==="F12"||(e.ctrlKey&&e.shiftKey)||(e.ctrlKey&&e.key.toLowerCase()==="u")){
+    e.preventDefault();
+    alert("Skid Detected");
+  }
+});
+</script>
+
+</body>
+</html>
